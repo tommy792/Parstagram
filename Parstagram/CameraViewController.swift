@@ -30,7 +30,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
     }
     
     @IBAction func onSubmitButton(_ sender: Any) {
-        let post = PFObject(className: "Post")
+        let post = PFObject(className: "Posts")
         
         post["caption"] = commentField.text!
         post["author"] = PFUser.current()!
@@ -72,7 +72,7 @@ class CameraViewController: UIViewController, UIImagePickerControllerDelegate, U
         let image = info[.editedImage] as! UIImage
         
         let size = CGSize(width: 300, height: 300)
-        let scaledImage = image.af_imageScaled(to: size)
+        let scaledImage = image.af_imageAspectScaled(toFill: size)
         
         imageView.image = scaledImage
         
